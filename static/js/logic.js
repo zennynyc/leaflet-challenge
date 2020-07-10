@@ -30,7 +30,7 @@ d3.json(url, function(data) {
 
  
 function createFeatures(earthquakeData) {
-    // Give each feature a popup describing the place and time of the earthquake
+    //  feature a popup describsion
     function onEachFeature(feature, layer) {
       return new L.circle([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
         fillOpacity: 1,
@@ -39,19 +39,19 @@ function createFeatures(earthquakeData) {
         radius: markerSize(feature.properties.mag*2000)
       });
     }
-// Create a GeoJSON layer containing the features array on the earthquakeData object
-// Run the onEachFeature function once for each piece of data in the array
+// Create a GeoJSON layer 
+// 
     var earthquakes = L.geoJSON(earthquakeData, {
         pointToLayer: onEachFeature
     });
 
-  // Sending our earthquakes layer to the createMap function
+  // createMap function
     createMap(earthquakes);
 };
 
 function createMap(earthquakes) {
 
-  // Define streetmap and darkmap layers
+  // Defining streetmap and darkmap layers
   var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -68,7 +68,7 @@ function createMap(earthquakes) {
     accessToken: API_KEY
   });
 
-  // Define a baseMaps object to hold our base layers
+  // baseMaps object to hold our base layers
   var baseMaps = {
     "Street Map": streetmap,
     "Dark Map": darkmap
